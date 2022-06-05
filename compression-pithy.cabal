@@ -1,5 +1,5 @@
 cabal-version:      2.4
-name:               pithy
+name:               compression-pithy
 version:            0.1.0.0
 
 -- A short (one-line) description of the package.
@@ -16,19 +16,29 @@ version:            0.1.0.0
 author:             ailrk
 maintainer:         jimmy123good@hotmail.com
 
+
 -- A copyright notice.
 -- copyright:
 -- category:
-extra-source-files: CHANGELOG.md
+extra-source-files: cbits/pithy.h
 
 library
-    exposed-modules:  MyLib
+    exposed-modules:
+      Compression.Raw
+      Compression.Internal
+      Compression.Pithy
 
     -- Modules included in this library but not exported.
     -- other-modules:
 
-    -- LANGUAGE extensions used by modules in this package.
-    -- other-extensions:
-    build-depends:    base ^>=4.16.0.0
+    build-depends:
+          base >=4.16.0.0
+        , bytestring
     hs-source-dirs:   src
+
+    c-sources:        cbits/pithy.c
+
+    include-dirs:     cbits
+    Includes:         pithy.h
+
     default-language: Haskell2010
